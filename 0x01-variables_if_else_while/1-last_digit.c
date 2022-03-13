@@ -5,13 +5,13 @@
 /**
  * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Return: Always 0 (SUCCESS)
  */
 int main(void)
 {
 	int n, lastDgt;
 
-	srand(time(0);
+	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	lastDgt = n % 10;
 
