@@ -1,26 +1,28 @@
 #include "main.h"
-
 /**
- * *_strncat - appends n bytes of a string to another string
- * @dest: string to be overwritten
- * @src: string from which n byte of a char will be appendedfrom
- * @n:number of bytes to be appended to dest
- * Return: pointer to dest
+ *_strncat - function that concatenates two strings. it will use
+ * at most n bytes from src. src does not need to be null terminated.
+ * @dest: pointer to destination string.
+ * @src: pointer to source string.
+ * @n: number of bytes to be concatenated.
+ *
+ *Return: pointer to destination string.
  */
-
-Char *_strncat(char *dest, char *src, int n)
+char *_strncat(char *dest, char *src, int n)
 {
-	int i, j;
+	int length, j;
+/* j is a counter for  n bytes of src to be concatenated */
+/* length = length of destination string */
 
-	i = 0;
-	while (dest[1] != '\0')
-		i++;
-
-	for (j = 0; src[j] != '\0' && j < n; j++)
+	length = 0;
+	while (dest[length] != '\0')
 	{
-		dest[1] = src[j];
-		i++;
+		length++;
 	}
-	
+	for (j = 0; j < n && src[j] != '\0'; j++, length++)
+	{
+		dest[length] = src[j];
+	}
+	dest[length] = '\0';
 	return (dest);
 }
