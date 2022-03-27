@@ -1,45 +1,42 @@
+#include "main.h"
+#include <stdio.h>
+
 /**
- *infinite_add - add two numbers.
- *
- *@n1: first number.
- *@n2: second number.
- *@r: result.
- *@size_r: result size.
- *Return: the addition of n1 and n2.
+ *print_buffer - Print a buffer 10 bytes per line.
+ *@b: Buffer address.
+ *@size: Number of characters to be printed.
  */
-
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+void print_buffer(char *b, int size)
 {
-	int add = 0, len1, len2, i, j;
+	int j, k, l;
 
-	for (len1 = 0; n1[len1]; len1++)
-	;
-	for (len2 = 0; n2[len2]; len2++)
-	;
-	if (len1 > size_r || len2 > size_r)
-		return (0);
-	len1--;
-	len2--;
-	size_r--;
-	for (i = 0; i < size_r; i++, len1--, len2--)
+	if (size <= 0)
+		printf("\n");
+	else
 	{
-		if (len1 >= 0)
-			add += n1[len1] - '0';
-		if (len2 >= 0)
-			add += n2[len2] - '0';
-		if (len1 < 0 && len2 < 0 && add == 0)
-			break;
-		r[i] = add % 10 + '0';
-		add /= 10;
+		for (j = 0; j < size; j += 10)
+		{
+			printf("%.8x:", j);
+			for (k = j; k < j + 10; k++)
+			{
+				if (k % 2 == 0)
+					printf(" ");
+				if (k < size)
+					printf("%.2x", *(b + k));
+				else
+					printf("  ");
+			}
+			printf(" ");
+			for (l = j; l < j + 10; l++)
+			{
+				if (l >= size)
+					break;
+				if (*(b + l) < 32 || *(b + l) > 126)
+					printf("%c", '.');
+				else
+					printf("%c", *(b + l));
+			}
+			printf("\n");
+		}
 	}
-	r[i] = '\0';
-	if (len1 >= 0 || len2 >= 0 || add)
-		return (0);
-	for (i--, j = 0; i > j; i--, j++)
-	{
-		add = r[i];
-		r[i] = r[j];
-		r[j] = add;
-	}
-	return (r);
 }
