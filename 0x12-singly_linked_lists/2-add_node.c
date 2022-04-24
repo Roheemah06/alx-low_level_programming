@@ -1,4 +1,3 @@
-_node.c
 #include "lists.h"
 
 /**
